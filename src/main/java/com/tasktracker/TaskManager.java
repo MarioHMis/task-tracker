@@ -1,4 +1,4 @@
-package com.tasrtracker;
+package com.tasktracker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,12 +7,17 @@ public class TaskManager {
     //Attibutes
     private Map<Integer, Task> tasks; //Stores tasks by their ID
     private int nextId; //Counter for generating unique IDs
+    private final FileHandler fileHandler; //Handles file operations
 
     //Constructor
 
     public TaskManager() {
-        this.tasks = new HashMap<>();
-        this.nextId = 1; //Start IDs from 1
+        this.fileHandler = new FileHandler();
+        this.tasks = fileHandler.readTaskFromFile(); //Load tasks from file
+        if(this.tasks == null) {
+            this.tasks = new HashMap<>(); // Initialize an empty map if no tasks exists
+        }
+        this.nextId = tasks.isEmpty() ? 1 : tasks.keySet().stream().max(Integer::compare).get() + 1; // Set nextId
     }
 
     //Method to add a new task
@@ -45,7 +50,6 @@ public class TaskManager {
         }
     }
 
-
     //Method to mark a task as in progress
     public void markTaskInProgress(int id) {
         Task task = tasks.get(id); //Get the task by ID
@@ -72,9 +76,14 @@ public class TaskManager {
     public void listTasks(String status) {
         System.out.println("Tasks:");
         for (Task task : tasks.values()) {
-            if(status == null || task.getStatus().equals(status)) {
+            if (status == null || task.getStatus().equals(status)) {
                 System.out.println(task);
             }
         }
+    }
+
+    //Method to save tasks to the JSON file
+    private void saveTasks() {
+        fileHandler.writeTasksToFile(tasks);
     }
 }
