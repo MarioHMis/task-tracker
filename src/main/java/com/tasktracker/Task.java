@@ -1,27 +1,26 @@
 package com.tasktracker;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
-    //Atributes
+    // Attributes
     private int id;
     private String description;
     private String status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String createdAt; // Store as String
+    private String updatedAt; // Store as String
 
-    //Contructor
+    // Constructor
     public Task(int id, String description) {
         this.id = id;
         this.description = description;
-        this.status = "todo";
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.status = "todo"; // Initial status
+        this.createdAt = LocalDateTime.now().toString(); // Store as String
+        this.updatedAt = this.createdAt; // Initially same as createdAt
     }
 
-    //Getters
-
-
+    // Getters
     public int getId() {
         return id;
     }
@@ -35,26 +34,25 @@ public class Task {
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt;
+        return LocalDateTime.parse(createdAt); // Convert String to LocalDateTime
     }
 
     public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+        return LocalDateTime.parse(updatedAt); // Convert String to LocalDateTime
     }
 
-    //Setters
-
-
+    // Setters
     public void setDescription(String description) {
         this.description = description;
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now().toString(); // Update the timestamp as String
     }
 
     public void setStatus(String status) {
         this.status = status;
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now().toString(); // Update the timestamp as String
     }
 
+    // toString method
     @Override
     public String toString() {
         return "Task{" +
