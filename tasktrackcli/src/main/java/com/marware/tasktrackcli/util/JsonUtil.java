@@ -1,8 +1,9 @@
-package com.tasktracker;
+package com.marware.tasktrackcli.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.marware.tasktrackcli.model.Task;
 
 import java.io.File;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FileHandler {
+public class JsonUtil {
     private static final String FILE_PATH = "tasks.json"; // Path to the JSON file
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create(); // Gson instance with pretty printing
 

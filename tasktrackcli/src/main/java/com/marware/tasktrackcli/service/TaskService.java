@@ -1,18 +1,21 @@
-package com.tasktracker;
+package com.marware.tasktrackcli.service;
+
+import com.marware.tasktrackcli.util.JsonUtil;
+import com.marware.tasktrackcli.model.Task;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TaskManager {
+public class TaskService {
     // Attributes
     private Map<Integer, Task> tasks; // Stores tasks by their ID
     private int nextId; // Counter for generating unique IDs
-    private final FileHandler fileHandler; // Handles file operations
+    private final JsonUtil jsonUtil; // Handles file operations
 
     // Constructor
-    public TaskManager() {
-        this.fileHandler = new FileHandler();
-        this.tasks = fileHandler.readTasksFromFile(); // Load tasks from file
+    public TaskService() {
+        this.jsonUtil = new JsonUtil();
+        this.tasks = jsonUtil.readTasksFromFile(); // Load tasks from file
         if (this.tasks == null) {
             this.tasks = new HashMap<>(); // Initialize an empty map if no tasks exist
         }
@@ -87,6 +90,6 @@ public class TaskManager {
 
     // Method to save tasks to the JSON file
     private void saveTasks() {
-        fileHandler.writeTasksToFile(tasks);
+        jsonUtil.writeTasksToFile(tasks);
     }
 }

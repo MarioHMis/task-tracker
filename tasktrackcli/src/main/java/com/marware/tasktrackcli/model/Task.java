@@ -1,7 +1,6 @@
-package com.tasktracker;
+package com.marware.tasktrackcli.model;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Task {
     // Attributes

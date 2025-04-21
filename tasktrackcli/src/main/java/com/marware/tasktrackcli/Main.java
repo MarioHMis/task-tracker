@@ -1,10 +1,12 @@
-package com.tasktracker;
+package com.marware.tasktrackcli;
+
+import com.marware.tasktrackcli.service.TaskService;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        TaskService taskService = new TaskService();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -34,7 +36,7 @@ public class Main {
                 case 1:
                     System.out.print("Enter task description: ");
                     String description = scanner.nextLine();
-                    taskManager.addTask(description);
+                    taskService.addTask(description);
                     break;
 
                 case 2:
@@ -42,35 +44,35 @@ public class Main {
                     int updateId = Integer.parseInt(scanner.nextLine());
                     System.out.print("Enter new description: ");
                     String newDescription = scanner.nextLine();
-                    taskManager.updateTask(updateId, newDescription);
+                    taskService.updateTask(updateId, newDescription);
                     break;
 
                 case 3:
                     System.out.print("Enter task ID: ");
                     int deleteId = Integer.parseInt(scanner.nextLine());
-                    taskManager.deleteTask(deleteId);
+                    taskService.deleteTask(deleteId);
                     break;
 
                 case 4:
                     System.out.print("Enter task ID: ");
                     int inProgressId = Integer.parseInt(scanner.nextLine());
-                    taskManager.markTaskInProgress(inProgressId);
+                    taskService.markTaskInProgress(inProgressId);
                     break;
 
                 case 5:
                     System.out.print("Enter task ID: ");
                     int doneId = Integer.parseInt(scanner.nextLine());
-                    taskManager.markTaskDone(doneId);
+                    taskService.markTaskDone(doneId);
                     break;
 
                 case 6:
-                    taskManager.listTasks(null);
+                    taskService.listTasks(null);
                     break;
 
                 case 7:
                     System.out.print("Enter status (todo, in-progress, done): ");
                     String status = scanner.nextLine();
-                    taskManager.listTasks(status);
+                    taskService.listTasks(status);
                     break;
 
                 case 8:
