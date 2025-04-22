@@ -19,5 +19,12 @@
     "status": "IN_PROGRESS",
     "createdAt": "2025-04-21T18:30:38.120008886",
     "updatedAt": "2025-04-21T18:41:26.327632687"
+  },
+  {
+    "id": "ef9bd5a0-3779-447c-94d1-7f390c63f061",
+    "description": "Learn unit testing",
+    "status": "TODO",
+    "createdAt": "2025-04-21T18:46:00.425537816",
+    "updatedAt": "2025-04-21T18:46:00.425537816"
   }
 ]
