@@ -36,18 +36,16 @@ public class TaskService {
         tasks.forEach(task -> System.out.println(task));
     }
 
-    public void listTasksByStatus(Status status) {
-        boolean found = false;
+    public List<Task> listTasksByStatus(Status status) {
+        List<Task> filtered = new ArrayList<>();
         for (Task task : tasks) {
             if (task.getStatus() == status) {
-                System.out.println(task);
-                found = true;
+                filtered.add(task);
             }
         }
-        if (!found) {
-            System.out.println("🔍 No tasks with status: " + status);
-        }
+        return filtered;
     }
+
 
     public void updateStatus(String id, Status newStatus) {
         Optional<Task> taskOpt = findTaskById(id);
@@ -79,6 +77,22 @@ public class TaskService {
     private void saveTasks() {
         JsonUtil.saveTasks(tasks);
     }
+
+    public List<Task> printNumberedTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("📭 No tasks available.");
+            return new ArrayList<>();
+        }
+
+        int index = 1;
+        for (Task task : tasks) {
+            System.out.println(index + ". [" + task.getStatus() + "] " + task.getDescription());
+            index++;
+        }
+        return tasks;
+    }
+
+
 
     //JunitTest
     public List<Task> getAllTasks() {
